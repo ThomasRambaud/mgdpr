@@ -103,7 +103,7 @@ Here is an example for a YouTube video:
 
 You can view that in the demo.html
 
-On server side, you can check if a certain cookie is enabled by checking if a cookie named "mgdpr_<name of the cookie in your configuration>" is not empty.
+On server side, you can check if a certain cookie is enabled by checking if a cookie named "mgdpr_&lt;name of the cookie in your configuration&lt;" is not empty.
 For example in PHP:
 
     $is_youtube_enabled = !empty($_COOKIE['mgdpr_youtube']);
