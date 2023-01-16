@@ -265,6 +265,7 @@
     background: none;
     height: auto;
     box-shadow: 0 0 20px -12px #00000073;
+    background: #fff;
 }
 
 .mgdpr-popup.sticky-bottom#mgdpr-mainpopup {
@@ -272,7 +273,7 @@
 }
 
 .mgdpr-popup.sticky-bottom .mgdpr-popup-content {
-    max-width: 100%;
+    max-width: 1250px;
 }
 
 .mgdpr-popup.sticky-bottom .mgdpr-buttons {
