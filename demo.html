@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>MGDPR simple demo</title>
+  <link rel="stylesheet" href="mgdpr.css">
+  <style>
+    body {font-family: sans-serif;}
+  </style>
+</head>
+<body>
+  
+    <h1>MGDPR test page</h1>
+    <p>
+        <a href="#" class="mgdpr-manage-preferences">Manage my cookies preferences</a>
+    </p>
+    <div class="mgdpr-if" data-cookie="youtube" data-code="&lt;iframe title=&quot;YouTube video player&quot; src=&quot;https://www.youtube.com/embed/C0DPdy98e4c&quot; width=&quot;560&quot; height=&quot;315&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;"><span class="mgdpr-if-text">You must allow the YouTube cookie to view the video. <a class="mgdpr-manage-preferences">Click here to change your preferences</a></span></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="mgdpr.js"></script>
+    <script>
+        MGDPR.init({
+            excludedUrls: [
+                '/fr/cookies/',
+                '/en/cookies-policy/'
+            ],
+            display: 'overlay',
+            nullIsEnabled: false,
+            i18n: {
+                title: 'Dear visitors,',
+                text: 'Our website www.domain.tld uses cookies to enhance your experience and provide usage statistics. You can accept all cookies, or manage your preferences as you wish.<br>' +
+                    '<a href="/legals" target="_blank">Read more</a>',
+                managePreferences: 'Manage preferences',
+                managePreferencesTitle: 'Cookie Policy',
+                managePreferencesText: 'This site uses cookies deposited by the website, or by third parties.<br>' +
+                    'This page allows you to determine your cookie preferences. For information, technical cookies are cookies necessary for the proper functioning of our site, used by the host for the technical management of the network. They allow you to use the main features of the site. They are essential to use the main functionalities of the site and therefore cannot be deactivated.',
+                savePreferences: 'Save my preferences',
+                refuseAll: 'Refuse all, but technical cookies',
+                acceptAll: 'Accept all',
+                acceptAllCookies: 'Accept all cookies',
+                accept: 'Accept',
+                allCookies: 'All cookies',
+                readMore: 'Read more',
+            },
+            cookies: [
+                {
+                    title: 'Mandatory cookies',
+                    text: 'Technical cookies are cookies necessary for the proper functioning of the site which allow you to appreciate its main features.',
+                    list: [
+                        {
+                            name: 'technical',
+                            title: 'Technical cookies',
+                            canToggle: false,
+                            readMoreUrl: '/fr/cookies',
+                            mention: 'Technical cookies cannot be deactivated as they are needed for the site to function'
+                        }
+                    ]
+                },
+                {
+                    title: 'Third party cookies',
+                    list: [
+                        {
+                            name: 'youtube',
+                            title: 'YouTube',
+                            mention: 'Video sharing services enrich the site with multimedia content and increase its visibility. You will not be able to view videos on our site if you disable them.'
+                        },
+                        {
+                            name: 'analytics',
+                            title: 'Google Analytics',
+                            mention: 'Is necessary for audience measurement. These cookies are used to generate statistics useful for improving the site.',
+                            onEnabled: function(cookie){
+                                const script = document.createElement('script');
+                                const gtmId = 'G-XXXXXXXXX';
+
+                                script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gtmId;
+                                document.head.append(script)
+
+                                window.dataLayer = window.dataLayer || [];
+
+                                function gtag(){dataLayer.push(arguments);}
+
+                                gtag('js', new Date());
+                                gtag('config', gtmId, { 'anonymize_ip': true });
+                            }
+                        }
+                    ]
+                }
+            ]
+        });
+    </script>
+</body>
+</html>
