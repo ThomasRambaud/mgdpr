@@ -138,9 +138,26 @@ var MGDPR = (function($){
             return true;
         },
 
+        isAllUnset: function(){
+            for(var categoryIndex in config.cookies){
+                var cookieCategory = config.cookies[categoryIndex];
+                for(var cookieIndex in cookieCategory.list){
+                    var cookie = cookieCategory.list[cookieIndex];
+                    if(this.cookieExists(cookie.name)){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        },
+
         isEnabled: function(cookieName){
             var currentValue = this.getCookie('mgdpr_' + cookieName);
             return (this.getNullIsEnabled() && currentValue === null) || currentValue == '1';
+        },
+
+        cookieExists: function(cookieName){
+            return this.getCookie('mgdpr_' + cookieName) !== null;
         },
 
         setup: function(){
@@ -160,7 +177,7 @@ var MGDPR = (function($){
                 '<div class="mgdpr-cookiescategory-title">' + config.i18n.acceptAllCookies + '</div>' +
                 '<div class="mgdpr-cookie">' +
                     '<div class="mgdpr-cookie-title">' + config.i18n.allCookies + '</div>' +
-                    '<button id="mgdpr-toggleall" class="mgdpr-toggle mgdpr-cantoggle' + (this.isAllEnabled() ? ' active' : '') + '"><span class="mgdpr-hidden">' + config.i18n.acceptAllCookies + '</span></button>' +
+                    '<button id="mgdpr-toggleall" class="mgdpr-toggle mgdpr-cantoggle' + (this.isAllEnabled() || this.isAllUnset() ? ' active' : '') + '"><span class="mgdpr-hidden">' + config.i18n.acceptAllCookies + '</span></button>' +
                 '</div>' +
             '</div>';
 
@@ -179,6 +196,7 @@ var MGDPR = (function($){
                 for(var cookieIndex in cookieCategory.list){
                     var cookie = cookieCategory.list[cookieIndex];
                     var isEnabled = this.isEnabled(cookie.name);
+                    var cookieExists = this.cookieExists(cookie.name);
 
                     preferencesPopupHtml += '<div class="mgdpr-cookie" data-name="' + cookie.name + '">';
 
@@ -199,7 +217,7 @@ var MGDPR = (function($){
                         '</div>';
                     }
                     
-                    preferencesPopupHtml += '<button class="mgdpr-toggle' + ((typeof cookie.canToggle == 'undefined' || cookie.canToggle) ? (' mgdpr-cantoggle' + (isEnabled ? ' active' : '')) : ' active mgdpr-canttoggle') + '"><span class="mgdpr-hidden">' + config.i18n.accept + '</span></button>';
+                    preferencesPopupHtml += '<button class="mgdpr-toggle' + ((typeof cookie.canToggle == 'undefined' || cookie.canToggle) ? (' mgdpr-cantoggle' + (isEnabled || !cookieExists ? ' active' : '')) : ' active mgdpr-canttoggle') + '"><span class="mgdpr-hidden">' + config.i18n.accept + '</span></button>';
                     preferencesPopupHtml += '</div>';
 
                     if(isEnabled && typeof cookie.onEnabled == 'function'){
