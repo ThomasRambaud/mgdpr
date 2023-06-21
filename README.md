@@ -4,7 +4,6 @@
 MGDPR is a simple JavaScript library which will help you being GDPR compliant. 
 It shows a popup to user visitors in which they are able to allow or disallow certain cookies. It is fully responsive.
 Very easy to setup for any developer.
-Requires jQuery
 
 
 
