@@ -4,29 +4,29 @@
    @copyright 2021
    ========================================================================== */
 .mgdpr-hidden {
-    border: 0!important;
-    clip: rect(1px,1px,1px,1px)!important;
-    -webkit-clip-path: inset(50%)!important;
-    clip-path: inset(50%)!important;
-    height: 1px!important;
-    margin: -1px!important;
-    overflow: hidden!important;
-    padding: 0!important;
-    position: absolute!important;
-    width: 1px!important;
-    white-space: nowrap!important;
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
 }
 
 .mgdpr-popup {
     position: fixed;
-    top: 0; 
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 9999;
     display: none;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .mgdpr-valign1 {
@@ -65,7 +65,7 @@
     width: 40px;
     height: 40px;
     text-align: center;
-    top: 10px; 
+    top: 10px;
     right: 10px;
     cursor: pointer;
 }
@@ -87,19 +87,19 @@
 }
 
 .mgdpr-button {
-    background: #000;
-    border: solid 2px #000;
+    background: #40bbb5 !important;
+    border: solid 2px #40bbb5 !important;
     border-radius: 24px;
     padding: 10px 20px;
     text-align: center;
-    color: #fff;
+    color: #fff !important;
     transition: all 150ms linear;
     text-decoration: none;
 }
 
 .mgdpr-button:hover {
     background: none;
-    color: #000;
+    opacity: 0.8;
 }
 
 .mgdpr-buttons .mgdpr-button {
@@ -128,6 +128,8 @@
 .mgdpr-cookiescategory-title {
     color: #727272;
     margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .mgdpr-cookiescategory-text {
@@ -137,7 +139,8 @@
 .mgdpr-cookie {
     margin-bottom: 15px;
     position: relative;
-    padding-right: 65px;;
+    padding-right: 65px;
+    ;
 }
 
 .mgdpr-cookie:last-child {
@@ -145,7 +148,7 @@
 }
 
 .mgdpr-cookie-title {
-    font-weight: bold;
+    font-weight: normal;
     font-size: 18px;
 }
 
@@ -177,6 +180,7 @@
     appearance: none;
     position: relative;
     cursor: pointer;
+    background: none !important;
 }
 
 .mgdpr-toggle::before {
@@ -207,7 +211,7 @@
 }
 
 .mgdpr-toggle.active::after {
-    transform: translate3d(20px,0,0);
+    transform: translate3d(20px, 0, 0);
 }
 
 .mgdpr-cookie .mgdpr-toggle {
@@ -229,11 +233,11 @@
 }
 
 .mgdpr-if {
-    width: 100%; 
+    width: 100%;
     display: block;
     margin: auto;
     background: #e9e9e9;
-    
+
 }
 
 .mgdpr-if-text {
@@ -280,9 +284,17 @@
     text-align: center;
 }
 
+.mgdpr-popup.sticky-bottom .mgdpr-cookie {
+    padding-right: 0;
+}
+
 @media only screen and (max-width: 800px) {
     .mgdpr-buttons .mgdpr-button {
         display: block;
         margin-top: 10px;
+    }
+
+    .mgdpr-popup.sticky-bottom .mgdpr-cookie {
+        padding-right: 65px;
     }
 }
