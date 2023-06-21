@@ -20,7 +20,7 @@ Requires jQuery
 
 ## Installation
 
-Include mgdpr.css and mgdpr.js in your project and include them in your pages. As shown in demo.html
+Include mgdpr.css and mgdpr.js in your project and include them in your pages, at the very top of your <head> tag. As shown in demo.html
 
 Then call MGDPR.init() with your desired configuration. For example:
 
@@ -64,6 +64,12 @@ Then call MGDPR.init() with your desired configuration. For example:
             {
                 title: 'Third party cookies',
                 list: [
+                    {
+                        name: 'twitter',
+                        title: 'Twitter',
+                        mention: 'Allow to display a Twitter timeline.',
+                        matchScripts: ['twitter.com']
+                    },
                     {
                         name: 'youtube',
                         title: 'YouTube',
